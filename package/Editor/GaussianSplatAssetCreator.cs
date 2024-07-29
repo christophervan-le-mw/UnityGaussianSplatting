@@ -324,12 +324,11 @@ namespace GaussianSplatting.Editor
             AssetDatabase.Refresh(ImportAssetOptions.ForceUncompressedImport);
 
             EditorUtility.DisplayProgressBar(kProgressTitle, "Setup data onto asset", 0.95f);
-            asset.SetAssetFiles(
-                useChunks ? AssetDatabase.LoadAssetAtPath<TextAsset>(pathChunk) : null,
-                AssetDatabase.LoadAssetAtPath<TextAsset>(pathPos),
-                AssetDatabase.LoadAssetAtPath<TextAsset>(pathOther),
-                AssetDatabase.LoadAssetAtPath<TextAsset>(pathCol),
-                AssetDatabase.LoadAssetAtPath<TextAsset>(pathSh));
+            asset.SetAssets(
+                AssetDatabase.LoadAssetAtPath<TextAsset>(pathPos).bytes,
+                AssetDatabase.LoadAssetAtPath<TextAsset>(pathOther).bytes,
+                AssetDatabase.LoadAssetAtPath<TextAsset>(pathCol).bytes,
+                AssetDatabase.LoadAssetAtPath<TextAsset>(pathSh).bytes);
 
             var assetPath = $"{m_OutputFolder}/{baseName}.asset";
             var savedAsset = CreateOrReplaceAsset(asset, assetPath);

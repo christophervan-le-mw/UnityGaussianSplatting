@@ -315,10 +315,10 @@ namespace GaussianSplatting.Editor
 
             if (GUILayout.Button("Export PLY"))
                 ExportPlyFile(gs, m_ExportBakeTransform);
-            if (asset.posFormat > GaussianSplatAsset.VectorFormat.Norm16 ||
-                asset.scaleFormat > GaussianSplatAsset.VectorFormat.Norm16 ||
-                asset.colorFormat > GaussianSplatAsset.ColorFormat.Float16x4 ||
-                asset.shFormat > GaussianSplatAsset.SHFormat.Float16)
+            if (asset.posFormat > GaussianSplatRenderAsset.VectorFormat.Norm16 ||
+                asset.scaleFormat > GaussianSplatRenderAsset.VectorFormat.Norm16 ||
+                asset.colorFormat > GaussianSplatRenderAsset.ColorFormat.Float16x4 ||
+                asset.shFormat > GaussianSplatRenderAsset.SHFormat.Float16)
             {
                 EditorGUILayout.HelpBox(
                     "It is recommended to use High or VeryHigh quality preset for editing splats, lower levels are lossy",

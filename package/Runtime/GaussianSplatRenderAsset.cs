@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+﻿// SPDX-License-Identifier: MIT
 
 using System;
 using Unity.Collections;
@@ -9,7 +9,7 @@ using UnityEngine.Experimental.Rendering;
 
 namespace GaussianSplatting.Runtime
 {
-    public class GaussianSplatAsset : ScriptableObject
+    public class GaussianSplatRenderAsset : ScriptableObject
     {
         public const int kCurrentVersion = 2023_10_20;
         public const int kChunkSize = 256;
@@ -119,7 +119,7 @@ namespace GaussianSplatting.Runtime
             m_DataHash = hash;
         }
 
-        public void SetAssets(byte[] dataPos, byte[] dataOther, byte[] dataColor, byte[] dataSh)
+        public void SetAssetFiles(byte[] dataPos, byte[] dataOther, byte[] dataColor, byte[] dataSh)
         {
             m_PosData = dataPos;
             m_OtherData = dataOther;
