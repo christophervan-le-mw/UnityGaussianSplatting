@@ -46,14 +46,35 @@ Die Codeanpassungen wurden in den folgenden Dateien vorgenommen:
 
 ![Diff](/docs/Images/diff.png?raw=true "Diff")
 
-Für eine genauere Ansicht, kann der Diff-Viewer im Repository aufgerufen werden:
+Die Datei `GaussianSplatReceiver` wurde hinzugefügt, um den Pfad zu einer Punktwolke per HTTP Post Request zu empfangen.
+Außerdem sorgt der Receiver dafür, dass die Punktwolke in die Anwendung geladen wird und dem Renderer übergeben wird.
 
+Der `GaussianSplatRenderer` wurde so angepasst, dass die Punktwolke in Echtzeit verändert werden kann und UI Elemente
+das Verhalten des Renderers beeinflussen können.
+
+Das `GaussianSplatRenderAsset` wurde hinzugefüt und baut auf dem `GaussianSplatAsset` auf.
+
+```csharp
+byte[]
+```
+
+statt
+
+```csharp
+NativeArray<byte>
+```
+
+um auch während der Laufzeit veränderbar zu sein. Neben vielen weiteren kleineren Änderungen ist dieses Refactoring der
+wichtigste Schritt gewesen um die Punktwolken dynamisch laden zu können. Es wurde dabei auch darauf geachtet, dass die
+ursprüngliche Funktionalität erhalten bleibt und die Anwendung weiterhin im Editor funktioniert.
+
+Für eine genaue Ansicht, kann der Diff-Viewer im Repository aufgerufen werden (hier wird mein fork mit dem originalen
+main-Branch verglichen):
 [Diff-Viewer](https://github.com/aras-p/UnityGaussianSplatting/compare/main...christophervan-le-mw:UnityGaussianSplatting:main)
 
 ### Python Anwendung ([Gaussian-Splatting](https://github.com/graphdeco-inria/gaussian-splatting))
 
 Die minimalen Änderungen können der Vollständigkeit halber hier eingesehen werden:
-
 [Diff-Viewer](https://github.com/graphdeco-inria/gaussian-splatting/compare/main...christophervan-le-mw:gaussian-splatting:main)
 
 ### Unity Assets ([XR Interaction Toolkit Starter Assets](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@3.0/manual/samples-starter-assets.html))
@@ -61,11 +82,13 @@ Die minimalen Änderungen können der Vollständigkeit halber hier eingesehen we
 Die XR Interaction Toolkit Starter Assets wurden als Basis für die VR Anwendung verwendet. UI Elemente und Interaktionen
 wurden teilweise übernommen und angepasst. Vorallem das gut ausgestattete XR Rig haben bei der Entwicklung geholfen.
 
-## Nutzung
+## Funktionsweise und Nutzung
 
 Der Dynamic Splat Viewer ist standalone nicht sinnvoll nutzbar. Es wird ein Server benötigt, der die Punktwolke
 bereitstellt.
-Das kann entweder ein paralleles Gaussian Splatting Training sein oder bereits vortrainierte Punktwolken.
+Das kann entweder ein paralleles Gaussian Splatting Training sein oder bereits vorhandene Punktwolken.
+
+Im hinterlegten Video wird der gesamte Funktionsumfang der Anwendung präsentiert.
 
 ### Use-Case 1: Realtime Monitoring des Trainingsprozesses
 
