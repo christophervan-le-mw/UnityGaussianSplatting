@@ -217,6 +217,25 @@ namespace GaussianSplatting.Runtime
 
         [Range(0.1f, 2.0f)] [Tooltip("Additional scaling factor for the splats")]
         public float m_SplatScale = 1.0f;
+
+        public float mSplatScale
+        {
+            get => m_SplatScale;
+            set => m_SplatScale = value;
+        }
+
+        public float mOpacityScale
+        {
+            get => m_OpacityScale;
+            set => m_OpacityScale = value;
+        }
+
+        public bool mSHOnly
+        {
+            get => m_SHOnly;
+            set => m_SHOnly = value;
+        }
+
         [Range(0.05f, 20.0f)]
         [Tooltip("Additional scaling factor for opacity")]
         public float m_OpacityScale = 1.0f;
@@ -224,8 +243,29 @@ namespace GaussianSplatting.Runtime
         public int m_SHOrder = 3;
         [Tooltip("Show only Spherical Harmonics contribution, using gray color")]
         public bool m_SHOnly;
+
         [Range(1,30)] [Tooltip("Sort splats only every N frames")]
         public int m_SortNthFrame = 1;
+
+        public void ScaleSliderChanged(float value)
+        {
+            m_SplatScale = value;
+        }
+
+        public void OpacitySliderChanged(float value)
+        {
+            m_OpacityScale = value;
+        }
+        
+        public void SHOnlyToggleChanged(bool value)
+        {
+            m_SHOnly = value;
+        }
+        
+        public void RenderModeDropdownChanged(int value)
+        {
+            m_RenderMode = (RenderMode)value;
+        }
 
         public RenderMode m_RenderMode = RenderMode.Splats;
         [Range(1.0f,15.0f)] public float m_PointDisplaySize = 3.0f;
